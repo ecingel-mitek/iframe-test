@@ -13,9 +13,18 @@ body {
 
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    gap: 20px;
+}
+
+.button-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .btn {
@@ -27,6 +36,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
+    min-width: 200px;
 }
 
 .btn:hover {
@@ -38,11 +48,20 @@ body {
     cursor: not-allowed;
 }
 
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
 .status {
     text-align: center;
     margin-top: 20px;
     padding: 10px;
     border-radius: 4px;
+    min-width: 300px;
 }
 
 .status.success {
