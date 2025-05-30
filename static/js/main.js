@@ -2,12 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const launchButton = document.getElementById('launchWindow');
     const backendButton = document.getElementById('backendVerification');
     const backendStatus = document.getElementById('backendStatus');
+    const iframeContainer = document.getElementById('iframeContainer');
     let verificationWindow = null;
     let currentVerificationUrl = null;
 
     const updateBackendStatus = (message, isError = false) => {
         backendStatus.textContent = message;
         backendStatus.className = `status ${isError ? 'error' : 'success'}`;
+    };
+
+    const updateIframe = (url) => {
+        // Remove placeholder if it exists
+        const placeholder = iframeContainer.querySelector('.iframe-placeholder');
+        if (placeholder) {
+            placeholder.remove();
+        }
+
+        // Create or update iframe
+        let iframe = iframeContainer.querySelector('iframe');
+        if (!iframe) {
+            iframe = document.createElement('iframe');
+            iframeContainer.appendChild(iframe);
+        }
+        iframe.src = url;
     };
 
     // Handle window launch
@@ -89,9 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(result.error || 'Failed to create verification request');
             }
 
-            // Store the verification URL for the launch button
+            // Store the verification URL for both the launch button and iframe
             currentVerificationUrl = result.data.verificationUrl;
-            updateBackendStatus('Verification URL received! You can now launch the verification window.');
+            
+            // Update the embedded iframe
+            updateIframe(currentVerificationUrl);
+            
+            updateBackendStatus('Verification URL received! You can now use either the embedded iframe or launch a new window.');
             console.log('Backend verification response:', result.data);
 
         } catch (error) {

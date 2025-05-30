@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="header">
         <div class="button-group">
             <button id="launchWindow" class="btn">Launch Verification Window</button>
             <button id="backendVerification" class="btn btn-secondary">Start Backend Verification</button>
         </div>
         <div id="backendStatus" class="status"></div>
     </div>
+    
+    <div class="iframe-section">
+        <div class="iframe-caption">IFrame</div>
+        <div id="iframeContainer" class="iframe-container">
+            <div class="iframe-placeholder">Click "Start Backend Verification" to load the verification iframe</div>
+        </div>
+    </div>
+
     <script src="static/js/main.js"></script>
 </body>
 </html> 
